@@ -25,9 +25,40 @@ code {
     margin-left: auto;
     margin-right: auto;
   }
+  @keyframes show {
+    from {
+      opacity: 0;
+      transform: translateX(-30%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .side-bar {
+    animation: show 0.3s ease-in;
+  }
+
+  .content-page {
+    animation: transform 0.5s ease-out;
+  }
 
   .movie-list .swiper-slide {
     width: 300px;
+    height: auto;
     // width: fit-content;
+  }
+  .banner .swiper {
+    height: 100%;
+  }
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    .selected {
+      @apply text-primary;
+    }
   }
 }

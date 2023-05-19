@@ -3,9 +3,9 @@ import React from "react";
 import { ReactComponent as ReactLogo } from "../../assets/images/logomu.svg";
 import { NavLink } from "react-router-dom";
 
-export default function SlideBar() {
+export default function SideBar() {
   return (
-    <div className="w-1/6 p-6 flex flex-col gap-4">
+    <div className={`side-bar w-1/6 p-6 flex flex-col gap-4 relative`}>
       <div className="logo w-[100px] mb-10">
         <ReactLogo />
       </div>

@@ -12,13 +12,19 @@ export default function ContentMain() {
         <h2 className="capitalize text-white mb-10 text-3xl font-bold">
           Now playing
         </h2>
-        <MovieList />
+        <MovieList type="now_playing" />
       </div>
-      <div className="movies-layout">
+      <div className="movies-layout mb-10">
         <h2 className="capitalize text-white mb-10 text-3xl font-bold">
           Top rated
         </h2>
-        <MovieList />
+        <MovieList type="top_rated" />
+      </div>
+      <div className="movies-layout mb-10">
+        <h2 className="capitalize text-white mb-10 text-3xl font-bold">
+          Trending
+        </h2>
+        <MovieList type="popular" />
       </div>
     </div>
   );
