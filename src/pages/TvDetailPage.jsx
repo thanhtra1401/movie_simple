@@ -2,22 +2,17 @@ import React from "react";
 import { apiUrl } from "../config";
 import { useParams } from "react-router-dom";
 import Header from "../components/layout/Header";
-import {
-  GetMovieCredit,
-  GetMovieDetails,
-  GetMovieSimilar,
-  GetMovieVideo,
-} from "../getData";
+import { GetTvDetails, GetTvRelated } from "../getData";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
 
-import MovieCard from "../components/movies/MovieCard";
+import TvCard from "../components/tv/TvCard";
 
-export default function MovieDetailPage() {
-  const { movieId } = useParams();
-  const { data } = GetMovieDetails(movieId);
+export default function TvDetailPage() {
+  const { tvId } = useParams();
+  const { data } = GetTvDetails(tvId);
   if (!data) return <h1>Not found</h1>;
-  const { backdrop_path, poster_path, title, genres, overview } = data;
+  const { backdrop_path, poster_path, name, genres, overview } = data;
   // console.log(apiUrl.getImageOrigin(poster_path));
   return (
     <div className="bg-slate-900 p-4 ">
@@ -40,7 +35,7 @@ export default function MovieDetailPage() {
           />
         </div>
         <h1 className="text-center text-4xl font-bold text-white mb-10">
-          {title}
+          {name}
         </h1>
         {genres?.length > 0 && (
           <div className="flex items-center justify-center gap-x-5 mb-10">
@@ -57,23 +52,23 @@ export default function MovieDetailPage() {
         <p className="text-center leading-relaxed max-w-[600px] mx-auto mb-10 text-white">
           {overview}
         </p>
-        <MovieCredits />
-        <MovieVideos />
-        <MovieSimilar />
+        <TvCredits />
+        <TvVideos />
+        <TvSimilar />
       </div>
     </div>
   );
 }
-function MovieCredits() {
-  const { movieId } = useParams();
-  const { data } = GetMovieCredit(movieId);
+function TvCredits() {
+  const { tvId } = useParams();
+  const { data } = GetTvRelated(tvId, "credits");
 
   if (!data) return null;
   const { cast } = data;
   if (!cast || cast.length <= 0) return null;
   return (
     <div className="py-10">
-      <h2 className="text-center text-3xl mb-10">Actors</h2>
+      <h2 className="text-center text-3xl mb-10">Credits</h2>
       <div className="grid grid-cols-4 gap-5">
         {cast.slice(0, 4).map((item) => (
           <div className="cast-item" key={item.id}>
@@ -89,9 +84,9 @@ function MovieCredits() {
     </div>
   );
 }
-function MovieVideos() {
-  const { movieId } = useParams();
-  const { data } = GetMovieVideo(movieId);
+function TvVideos() {
+  const { tvId } = useParams();
+  const { data } = GetTvRelated(tvId, "videos");
 
   if (!data) return null;
   const { results } = data;
@@ -121,9 +116,9 @@ function MovieVideos() {
     </div>
   );
 }
-function MovieSimilar() {
-  const { movieId } = useParams();
-  const { data } = GetMovieSimilar(movieId);
+function TvSimilar() {
+  const { tvId } = useParams();
+  const { data } = GetTvRelated(tvId, "similar");
   if (!data) return null;
   const { results } = data;
   if (!results || results.length <= 0) return null;
@@ -140,7 +135,7 @@ function MovieSimilar() {
           {results.length > 0 &&
             results.map((item) => (
               <SwiperSlide key={item.id}>
-                <MovieCard movie={item}></MovieCard>
+                <TvCard movie={item}></TvCard>
               </SwiperSlide>
             ))}
         </Swiper>

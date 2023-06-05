@@ -3,10 +3,10 @@ import ButtonMain from "../button/ButtonMain";
 import { apiUrl } from "../../config";
 import { useNavigate } from "react-router-dom";
 
-export default function MovieCard({ movie }) {
+export default function TvCard({ movie }) {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate(`/movie/${id}`);
+    navigate(`/tv-series/${id}`);
   };
   const {
     title,

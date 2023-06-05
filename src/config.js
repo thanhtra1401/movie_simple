@@ -11,4 +11,12 @@ export const apiUrl = {
     `https://api.themoviedb.org/3/movie/${movieId}/${type}?api_key=${apiKey}`,
   getMovieSearch: (query, page = 1) =>
     `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}&page=${page}`,
+  getTvList: (type, page = 1) =>
+    `https://api.themoviedb.org/3/tv/${type}?api_key=${apiKey}&page=${page}`,
+  getTvDetails: (tvId) =>
+    `https://api.themoviedb.org/3/tv/${tvId}?api_key=${apiKey}`,
+  getTvRelated: (tvId, type) =>
+    `https://api.themoviedb.org/3/tv/${tvId}/${type}?api_key=${apiKey}`,
+  getTvSearch: (query, page = 1) =>
+    `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}&page=${page}`,
 };

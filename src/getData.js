@@ -28,3 +28,11 @@ export const GetMovieSearch = (query) => {
 
   return data;
 };
+export const GetTvDetails = (tvId) => {
+  const data = useSWR(apiUrl.getTvDetails(tvId), fetcher);
+  return data;
+};
+export const GetTvRelated = (tvId, type) => {
+  const data = useSWR(apiUrl.getTvRelated(tvId, type), fetcher);
+  return data;
+};
